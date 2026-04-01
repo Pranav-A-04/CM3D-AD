@@ -1,0 +1,13 @@
+easydict
+ninja
+numpy
+open3d
+opencv-python-headless
+pyyaml
+scikit-learn
+scipy
+tensorboard
+timm
+torch
+tqdm
+pyvista
