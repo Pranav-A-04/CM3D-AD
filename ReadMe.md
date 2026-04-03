@@ -137,45 +137,6 @@ The results of these experiments are shown below:
   </tr>
 </table>
 
-
----
-## Steps to Reproduce
-
-Follow the steps below to run the provided `inference.ipynb` notebook on Google Colab with GPU acceleration:
-
-### 1. Open Google Colab
-- Visit [https://colab.research.google.com/](https://colab.research.google.com/) in your web browser.
-
-### 2. Upload the Notebook
-- Click on the **"Upload"** tab in the Colab interface.
-- Select the `inference.ipynb` notebook file from your local system by clicking **"Choose File"**.
-- The notebook will be uploaded and opened in Colab.
-
-### 3. Set Runtime to GPU (Only required if trying to execute with GPU)
-- In the Colab menu, go to **`Runtime` → `Change runtime type`**.
-- Under **Hardware accelerator**, select **T4 GPU** from the options.
-- Click **"Save"** to apply the GPU setting.
-
-### 4. Upload Repository
-- Upload the zip file of your repository to Google Drive.
-
-### 5. Execute the Notebook
-- After setting the GPU runtime, execute the notebook cells sequentially:
-    - You can run individual cells by clicking the **Play ▶️** button next to each cell.
-    - Or, to run all cells at once, select **`Runtime` → `Run all`**.
-
-### 6. To Run for a particular object
-- Execute the following command in the notebook.
-  - ``` !make -sC Fast-CMAD ashtray0-consistency ```
-
-
-  - ``` !make -sC Fast-CMAD ashtray0-ddpm ```
-
-
-Following these steps ensures that the notebook is executed in a GPU-accelerated environment using Google Colab.
-
----
-
 ## Citations
 @article{song2023consistency,<br/>
   title={Consistency Models},<br/>
