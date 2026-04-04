@@ -1,1 +1,5 @@
-from .pointnet import PointNetEncoder, PointNetEncoderTNet, feature_transform_reguliarzer
+from .pointnet import (
+    PointNetEncoder,
+    PointNetEncoderTNet,
+    feature_transform_reguliarzer,
+)

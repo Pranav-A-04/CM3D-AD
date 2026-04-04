@@ -3,6 +3,7 @@ from torch.nn import Module, Linear
 from torch.optim.lr_scheduler import LambdaLR
 import numpy as np
 
+
 def reparameterize_gaussian(mean, logvar):
     std = torch.exp(0.5 * logvar)
     eps = torch.randn(std.size()).to(mean)
@@ -10,7 +11,7 @@ def reparameterize_gaussian(mean, logvar):
 
 
 def gaussian_entropy(logvar):
-    const = 0.5 * float(logvar.size(1)) * (1. + np.log(np.pi * 2))
+    const = 0.5 * float(logvar.size(1)) * (1.0 + np.log(np.pi * 2))
     ent = 0.5 * logvar.sum(dim=1, keepdim=False) + const
     return ent
 
@@ -59,7 +60,8 @@ def get_linear_scheduler(optimizer, start_epoch, end_epoch, start_lr, end_lr):
             total = end_epoch - start_epoch
             delta = epoch - start_epoch
             frac = delta / total
-            return (1-frac) * 1.0 + frac * (end_lr / start_lr)
+            return (1 - frac) * 1.0 + frac * (end_lr / start_lr)
         else:
             return end_lr / start_lr
+
     return LambdaLR(optimizer, lr_lambda=lr_func)

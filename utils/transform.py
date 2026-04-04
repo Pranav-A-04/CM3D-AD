@@ -19,12 +19,11 @@ class Center(object):
         return data
 
     def __repr__(self):
-        return '{}()'.format(self.__class__.__name__)
+        return "{}()".format(self.__class__.__name__)
 
 
 class NormalizeScale(object):
-    r"""Centers and normalizes node positions to the interval :math:`(-1, 1)`.
-    """
+    r"""Centers and normalizes node positions to the interval :math:`(-1, 1)`."""
 
     def __init__(self, attr):
         self.center = Center(attr=attr)
@@ -57,26 +56,30 @@ class FixedPoints(object):
         # warnings.warn('FixedPoints is not deterministic')
 
     def __call__(self, data):
-        num_nodes = data['pointcloud'].size(0)
-        data['dense'] = data['pointcloud']
+        num_nodes = data["pointcloud"].size(0)
+        data["dense"] = data["pointcloud"]
 
         if self.replace:
             choice = np.random.choice(num_nodes, self.num, replace=True)
         else:
-            choice = torch.cat([
-                torch.randperm(num_nodes)
-                for _ in range(math.ceil(self.num / num_nodes))
-            ], dim=0)[:self.num]
+            choice = torch.cat(
+                [
+                    torch.randperm(num_nodes)
+                    for _ in range(math.ceil(self.num / num_nodes))
+                ],
+                dim=0,
+            )[: self.num]
 
         for key, item in data.items():
-            if torch.is_tensor(item) and item.size(0) == num_nodes and key != 'dense':
+            if torch.is_tensor(item) and item.size(0) == num_nodes and key != "dense":
                 data[key] = item[choice]
 
         return data
 
     def __repr__(self):
-        return '{}({}, replace={})'.format(self.__class__.__name__, self.num,
-                                           self.replace)
+        return "{}({}, replace={})".format(
+            self.__class__.__name__, self.num, self.replace
+        )
 
 
 class LinearTransformation(object):
@@ -88,11 +91,11 @@ class LinearTransformation(object):
     """
 
     def __init__(self, matrix, attr):
-        assert matrix.dim() == 2, (
-            'Transformation matrix should be two-dimensional.')
+        assert matrix.dim() == 2, "Transformation matrix should be two-dimensional."
         assert matrix.size(0) == matrix.size(1), (
-            'Transformation matrix should be square. Got [{} x {}] rectangular'
-            'matrix.'.format(*matrix.size()))
+            "Transformation matrix should be square. Got [{} x {}] rectangular"
+            "matrix.".format(*matrix.size())
+        )
 
         self.matrix = matrix
         self.attr = attr
@@ -102,15 +105,16 @@ class LinearTransformation(object):
             pos = data[key].view(-1, 1) if data[key].dim() == 1 else data[key]
 
             assert pos.size(-1) == self.matrix.size(-2), (
-                'Node position matrix and transformation matrix have incompatible '
-                'shape.')
+                "Node position matrix and transformation matrix have incompatible "
+                "shape."
+            )
 
             data[key] = torch.matmul(pos, self.matrix.to(pos.dtype).to(pos.device))
 
         return data
 
     def __repr__(self):
-        return '{}({})'.format(self.__class__.__name__, self.matrix.tolist())
+        return "{}({})".format(self.__class__.__name__, self.matrix.tolist())
 
 
 class RandomRotate(object):
@@ -135,31 +139,35 @@ class RandomRotate(object):
         return LinearTransformation(torch.tensor(matrix), attr=self.attr)(data)
 
     def __repr__(self):
-        return '{}({})'.format(self.__class__.__name__, self.degrees)
+        return "{}({})".format(self.__class__.__name__, self.degrees)
 
 
 class AddNoise(object):
 
-    def __init__(self, std=0.01, noiseless_item_key='clean'):
+    def __init__(self, std=0.01, noiseless_item_key="clean"):
         self.std = std
         self.key = noiseless_item_key
 
     def __call__(self, data):
-        data[self.key] = data['pos']
-        data['pos'] = data['pos'] + torch.normal(mean=0, std=self.std, size=data['pos'].size())
+        data[self.key] = data["pos"]
+        data["pos"] = data["pos"] + torch.normal(
+            mean=0, std=self.std, size=data["pos"].size()
+        )
         return data
 
 
 class AddRandomNoise(object):
 
-    def __init__(self, std_range=[0, 0.10], noiseless_item_key='clean'):
+    def __init__(self, std_range=[0, 0.10], noiseless_item_key="clean"):
         self.std_range = std_range
         self.key = noiseless_item_key
 
     def __call__(self, data):
         noise_std = random.uniform(*self.std_range)
-        data[self.key] = data['pos']
-        data['pos'] = data['pos'] + torch.normal(mean=0, std=noise_std, size=data['pos'].size())
+        data[self.key] = data["pos"]
+        data["pos"] = data["pos"] + torch.normal(
+            mean=0, std=noise_std, size=data["pos"].size()
+        )
         return data
 
 
@@ -167,17 +175,19 @@ class AddNoiseForEval(object):
 
     def __init__(self, stds=[0.0, 0.01, 0.02, 0.03, 0.05, 0.10, 0.15]):
         self.stds = stds
-        self.keys = ['noisy_%.2f' % s for s in stds]
+        self.keys = ["noisy_%.2f" % s for s in stds]
 
     def __call__(self, data):
-        data['clean'] = data['pos']
+        data["clean"] = data["pos"]
         for noise_std in self.stds:
-            data['noisy_%.2f' % noise_std] = data['pos'] + torch.normal(mean=0, std=noise_std, size=data['pos'].size())
+            data["noisy_%.2f" % noise_std] = data["pos"] + torch.normal(
+                mean=0, std=noise_std, size=data["pos"].size()
+            )
         return data
 
 
 class IdentityTransform(object):
-    
+
     def __call__(self, data):
         return data
 
@@ -210,7 +220,7 @@ class RandomScale(object):
         return data
 
     def __repr__(self):
-        return '{}({})'.format(self.__class__.__name__, self.scales)
+        return "{}({})".format(self.__class__.__name__, self.scales)
 
 
 class RandomTranslate(object):
@@ -230,14 +240,14 @@ class RandomTranslate(object):
         self.attr = attr
 
     def __call__(self, data):
-        (n, dim), t = data['pos'].size(), self.translate
+        (n, dim), t = data["pos"].size(), self.translate
         if isinstance(t, numbers.Number):
             t = list(repeat(t, times=dim))
         assert len(t) == dim
 
         ts = []
         for d in range(dim):
-            ts.append(data['pos'].new_empty(n).uniform_(-abs(t[d]), abs(t[d])))
+            ts.append(data["pos"].new_empty(n).uniform_(-abs(t[d]), abs(t[d])))
 
         for key in self.attr:
             data[key] = data[key] + torch.stack(ts, dim=-1)
@@ -245,7 +255,7 @@ class RandomTranslate(object):
         return data
 
     def __repr__(self):
-        return '{}({})'.format(self.__class__.__name__, self.translate)
+        return "{}({})".format(self.__class__.__name__, self.translate)
 
 
 class Rotate(object):
@@ -277,5 +287,6 @@ class Rotate(object):
         return LinearTransformation(torch.tensor(matrix), attr=self.attr)(data)
 
     def __repr__(self):
-        return '{}({}, axis={})'.format(self.__class__.__name__, self.degrees,
-                                        self.axis)
+        return "{}({}, axis={})".format(
+            self.__class__.__name__, self.degrees, self.axis
+        )
