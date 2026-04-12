@@ -16,17 +16,50 @@ Diffusion models are rapidly redefining 3D anomaly detection in point cloud data
 - **Output**: Reconstructed (anomaly-free) point cloud  
 - **Detection**: Chamfer/EMD-based anomaly scoring via input–output deviation
 
-## Citations
-@article{song2023consistency,<br/>
-  title={Consistency Models},<br/>
-  author={Song, Yang and Meng, Chenlin and Ermon, Stefano},<br/>
-  journal={arXiv preprint arXiv:2303.01469},<br/>
-  year={2023}<br/>
-}
+## Training
 
-@inproceedings{cao2023r3dad,
-  title={R3D-AD: Reconstructing 3D Shapes for Unsupervised Anomaly Detection in Point Clouds},<br/>
-  author={Cao, Xiyang and Zhang, Ziyang and Liu, Lanqing and Yan, Xiaokang and Yang, Kailun and Zhao<br/> Hengshuang and Geiger, Andreas and Shi, Jianping},<br/>
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},<br/>
-  year={2023}<br/>
-}
+Create a virtual environment:
+```
+python -m venv myenv
+```
+
+Install the required packages:
+```
+pip install -r requirements.txt
+```
+
+Install the following CUDA Ops packages:
+```
+pip install "git+https://github.com/unlimblue/KNN_CUDA.git#egg=knn_cuda&subdirectory=."
+pip install "git+https://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib"
+```
+
+
+## Dataset
+Anomaly ShapeNet
+
+
+
+## Training
+```
+python train_test.py PATH_TO_CONFIG
+```
+
+## Inference
+```
+python inference.py --checkpoint path/to/ckpt --model_type {consistency/diffusion} --pointcloud path/to/pcd --num_points <INPUT_PCD_NUM_POINTS>
+```
+
+## Acknowledgement
+Thanks to the following open-sourced repos:
+
+1. R3D-AD
+2. OpenAI Consistency Models
+
+
+
+
+## Citations
+If you find this work useful in your research, please consider citing:
+
+//OUR CITATION
