@@ -38,6 +38,7 @@ Install the following CUDA Ops packages:
 pip install "git+https://github.com/unlimblue/KNN_CUDA.git#egg=knn_cuda&subdirectory=."
 pip install "git+https://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib"
 ```
+## Datasets
 
 ## 🚀 Run Training
 ```
@@ -52,8 +53,9 @@ python inference.py --checkpoint path/to/ckpt --model_type {consistency/diffusio
 ## Acknowledgement
 Thanks to the following open-sourced repos:
 
-1. R3D-AD
-2. OpenAI Consistency Models
+1. [R3D-AD](https://github.com/zhouzheyuan/r3d-ad)
+2. [OpenAI Consistency Models](https://github.com/openai/consistency_models)
+
 
 ## 🖊️ Citations
 If you find this work useful in your research, please consider citing:
