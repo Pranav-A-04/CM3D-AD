@@ -6,7 +6,7 @@
 
 ---
 ## 🖼️ Conference Poster 
-### Presented at CVPR 2026 (Workshop on Efficient Deep Learning & Computer Vision)
+### Presented at CVPR 2026, Workshop on Efficient Deep Learning & Computer Vision (ECV)
 
 ![CVPR Poster](/result_images/cvpr_poster.jpg)
 
