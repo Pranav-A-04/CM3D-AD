@@ -55,7 +55,7 @@ python inference.py --checkpoint path/to/ckpt --model_type {consistency/diffusio
 ```
 
 ## Acknowledgement
-Thanks to the following open-sourced repos:
+Thanks to the following open-sourced repositories:
 
 1. [R3D-AD](https://github.com/zhouzheyuan/r3d-ad)
 2. [OpenAI Consistency Models](https://github.com/openai/consistency_models)
