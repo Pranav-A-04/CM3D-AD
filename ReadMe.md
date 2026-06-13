@@ -5,7 +5,8 @@
 [![Code License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
-## 🖼️ CVPR 2026 Poster Presentation
+## 🖼️ Conference Poster 
+### Presented at CVPR 2026 (Workshop on Efficient Deep Learning & Computer Vision)
 
 ![CVPR Poster](/result_images/cvpr_poster.jpg)
 
