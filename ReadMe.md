@@ -43,7 +43,6 @@ Install the following CUDA Ops packages:
 pip install "git+https://github.com/unlimblue/KNN_CUDA.git#egg=knn_cuda&subdirectory=."
 pip install "git+https://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib"
 ```
-## Datasets
 
 ## 🚀 Run Training
 ```
