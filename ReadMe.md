@@ -64,13 +64,12 @@ Thanks to the following open-sourced repos:
 ## 🖊️ Citations
 If you find this work useful in your research, please consider citing:
 ```bibtex
-@misc{a2026stepsneedefficient3d,
-      title={Two Steps Are All You Need: Efficient 3D Point Cloud Anomaly Detection with Consistency Models}, 
-      author={Pranav A and Shashank B and Pranav Siddappa and Dominik Seuss and Minal Moharir and Subramanya KN},
-      year={2026},
-      eprint={2605.05372},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2605.05372}, 
+@InProceedings{A_2026_CVPR,
+    author    = {A, Pranav and B, Shashank and Siddappa, Pranav and Seuss, Dominik and Moharir, Minal and KN, Subramanya},
+    title     = {Two Steps Are All You Need: Efficient 3D Point Cloud Anomaly Detection with Consistency Models},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2026},
+    pages     = {3479-3487}
 }
 ```
