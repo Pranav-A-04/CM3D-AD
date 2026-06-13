@@ -5,7 +5,7 @@
 [![Code License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
-## 📃 Poster
+## 🖼️ CVPR 2026 Poster Presentation
 
 ![CVPR Poster](/result_images/cvpr_poster.jpg)
 
