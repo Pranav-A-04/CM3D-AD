@@ -5,6 +5,10 @@
 [![Code License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
+## 📃 Poster
+
+![CVPR Poster](/result_images/cvpr_poster.jpg)
+
 
 ## 🚀 Architecture Overview
 
